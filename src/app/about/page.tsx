@@ -21,7 +21,7 @@ export default function AboutPage() {
       <Section title="About Juci" kicker="Our Story">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-xl text-gray-600">
-            Fresh. Local. Healthy. That's the Juci way.
+            Fresh. Local. Healthy. That&lsquo;s the Juci way.
           </p>
         </div>
       </Section>
@@ -34,7 +34,7 @@ export default function AboutPage() {
             <div className="space-y-6 text-lg text-gray-600">
               <p>
                 At Juci, we believe that healthy living should be delicious, accessible, 
-                and convenient. Founded in the heart of Birmingham, we're passionate about 
+                and convenient. Founded in the heart of Birmingham, we&lsquo;re passionate about 
                 creating nutritious drinks and bowls that fuel your body and delight your taste buds.
               </p>
               <p>
@@ -43,9 +43,9 @@ export default function AboutPage() {
                 most nutritious and flavorful experience possible.
               </p>
               <p>
-                Whether you're starting your day with an energizing green juice, refueling 
+                Whether you&lsquo;re starting your day with an energizing green juice, refueling 
                 after a workout with a protein smoothie, or treating yourself to an açaí bowl, 
-                we're here to support your wellness journey.
+                we&lsquo;re here to support your wellness journey.
               </p>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function AboutPage() {
                   {site.tagline}
                 </h3>
                 <p className="text-gray-600">
-                  Birmingham's freshest juice bar
+                  Birmingham&lsquo;s freshest juice bar
                 </p>
               </div>
             </div>

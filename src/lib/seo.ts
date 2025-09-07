@@ -28,7 +28,6 @@ export function generateSEO({
       index: !noIndex,
       follow: !noIndex,
     },
-    canonical: url,
     openGraph: {
       title: fullTitle,
       description,

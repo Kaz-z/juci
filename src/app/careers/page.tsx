@@ -153,8 +153,8 @@ export default function CareersPage() {
       <Section title="Join Our Team" kicker="Careers">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-xl text-gray-600 mb-8">
-            Love healthy living? Want to be part of Birmingham's freshest juice bar? 
-            We're always looking for passionate people to join the Juci family.
+            Love healthy living? Want to be part of Birmingham&lsquo;s freshest juice bar? 
+            We&lsquo;re always looking for passionate people to join the Juci family.
           </p>
         </div>
       </Section>
@@ -184,7 +184,7 @@ export default function CareersPage() {
             <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center">
               <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
               <p className="text-green-800">
-                Thank you for your application! We'll review it and get back to you soon.
+                Thank you for your application! We&lsquo;ll review it and get back to you soon.
               </p>
             </div>
           )}

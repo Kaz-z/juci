@@ -93,7 +93,7 @@ export default function ContactPage() {
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-xl text-gray-600 mb-8">
             Have a question, want to partner with us, or just say hello? 
-            We'd love to hear from you!
+            We&lsquo;&lsquo;d love to hear from you!
           </p>
         </div>
       </Section>
@@ -202,7 +202,7 @@ export default function ContactPage() {
               <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center">
                 <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                 <p className="text-green-800">
-                  Thank you for your message! We'll get back to you within 24 hours.
+                  Thank you for your message! We&lsquo;ll get back to you within 24 hours.
                 </p>
               </div>
             )}
