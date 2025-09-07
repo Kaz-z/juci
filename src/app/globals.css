@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens from new brand palette */
+:root {
+  --color-bg: #FAF9F6;              /* Off-white background */
+  --color-alt-bg: #BDCCC4;          /* Muted Sage for sections */
+  --color-fg: #2E2E2E;              /* Rich Charcoal text */
+  --color-accent: #EAC9C1;          /* Blush Pink accent */
+  --color-highlight: #E3CBA7;       /* Beige Gold highlight */
+  --color-cta: #bdccc3;             /* Sage Green CTA buttons */
+  --radius: 1rem;
+}
+
+/* Font face for Aftetir - self-hosted */
+@font-face {
+  font-family: 'Aftetir';
+  src: url('/fonts/Aftetir-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aftetir';
+  src: url('/fonts/Aftetir-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallback if Aftetir is not available */
+body {
+  font-family: 'Aftetir', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Base styles */
+@layer base {
+  html {
+    font-family: 'Aftetir', system-ui, sans-serif;
+  }
+  
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+  }
+  
+  /* Focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Component styles */
+@layer components {
+  .btn-primary {
+    @apply bg-accent text-fg px-6 py-3 rounded-xl font-medium hover:opacity-90 focus:opacity-90 transition-opacity;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-accent text-accent px-6 py-3 rounded-xl font-medium hover:bg-accent hover:text-fg focus:bg-accent focus:text-fg transition-colors;
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  /* Custom glassmorphism effect */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+  
+  /* Custom gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent to-green-400 bg-clip-text text-transparent;
+  }
+  
+  /* Animation for scroll reveal */
+  .reveal {
+    @apply transform translate-y-4 opacity-0 transition-all duration-700 ease-out;
+  }
+  
+  .reveal.active {
+    @apply translate-y-0 opacity-100;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  /* Improved focus states */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-white;
+  }
+  
+  /* Smooth scrolling for better UX */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent mobile scrolling issues */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Custom text shadow */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Vertical text for download button */
+  .writing-mode-vertical {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+  }
+
+  /* Hide Instagram embed "View profile" button - Note: This may violate Instagram's ToS */
+  .instagram-media iframe {
+    pointer-events: none;
+  }
+  
+  /* Alternative approach - hide specific elements (use with caution) */
+  .instagram-media a[href*="instagram.com"]:has-text("View profile") {
+    display: none !important;
+  }
+}

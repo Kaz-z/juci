@@ -1,0 +1,15 @@
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pink rounded background -->
+  <rect width="200" height="80" rx="20" fill="#E91E63"/>
+  
+  <!-- Playful "JUCI" text -->
+  <text x="100" y="50" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="white">JUCI</text>
+  
+  <!-- Small decorative elements -->
+  <circle cx="170" cy="25" r="8" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="30" cy="25" r="6" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="180" cy="55" r="5" fill="rgba(255,255,255,0.25)"/>
+  
+  <!-- Juice drop decoration -->
+  <path d="M25 45 Q25 35 35 35 Q45 35 45 45 Q45 55 35 60 Q25 55 25 45" fill="rgba(255,255,255,0.4)"/>
+</svg>
