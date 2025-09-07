@@ -55,11 +55,9 @@ export default function Header() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isHomePage 
-          ? isScrolled 
-            ? 'bg-cta backdrop-blur-sm shadow-lg' 
-            : 'bg-transparent'
-          : 'bg-cta backdrop-blur-sm border-b border-gray-200'
+        isScrolled 
+          ? 'bg-cta backdrop-blur-sm shadow-lg' 
+          : 'bg-transparent'
       }`}>
         <nav className="container-max section-padding">
           <div className="flex justify-between items-center h-24 py-8">
@@ -67,11 +65,11 @@ export default function Header() {
                       <Link 
             href="/" 
             className={`text-4xl font-bold transition-colors ${
-              isHomePage 
-                ? isScrolled
-                  ? 'text-white hover:text-white'
-                  : 'text-white hover:text-highlight'
-                : 'text-fg hover:text-white'
+              isScrolled
+                ? 'text-white hover:text-white'
+                : isHomePage
+                  ? 'text-white hover:text-highlight'
+                  : 'text-fg hover:text-cta'
             }`}
             aria-label="Juci home"
           >
@@ -85,11 +83,11 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className={`relative px-2 py-1 font-medium text-lg transition-all duration-300 ease-in-out overflow-hidden group ${
-                  isHomePage 
-                    ? isScrolled
+                  isScrolled
+                    ? 'text-white/90 hover:text-cta'
+                    : isHomePage
                       ? 'text-white/90 hover:text-cta'
-                      : 'text-white/90 hover:text-cta'
-                    : 'text-fg/80 hover:text-cta'
+                      : 'text-fg/80 hover:text-cta'
                 }`}
               >
                 <span className="relative z-10">{item.name}</span>
@@ -103,11 +101,11 @@ export default function Header() {
               <button
                 type="button"
                 className={`p-2 rounded-md transition-colors ${
-                  isHomePage 
-                    ? isScrolled
-                      ? 'text-white hover:text-white/70'
-                      : 'text-white hover:text-highlight'
-                    : 'text-fg hover:text-cta'
+                  isScrolled
+                    ? 'text-white hover:text-white/70'
+                    : isHomePage
+                      ? 'text-white hover:text-highlight'
+                      : 'text-fg hover:text-cta'
                 }`}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle mobile menu"
