@@ -13,6 +13,18 @@
   --radius: 1rem;
 }
 
+/* Dark mode - keep same colors as light mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #FAF9F6;            /* Same off-white background */
+    --color-alt-bg: #BDCCC4;        /* Same muted sage for sections */
+    --color-fg: #2E2E2E;            /* Same rich charcoal text */
+    --color-accent: #EAC9C1;        /* Same blush pink accent */
+    --color-highlight: #E3CBA7;     /* Same beige gold highlight */
+    --color-cta: #bdccc3;           /* Same sage green CTA buttons */
+  }
+}
+
 /* Font face for Aftetir - self-hosted */
 @font-face {
   font-family: 'Aftetir';
