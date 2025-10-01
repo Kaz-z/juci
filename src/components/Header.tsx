@@ -12,7 +12,6 @@ import Button from './Button'
 
 const navigation = [
   { name: 'MENU', href: '/menu' },
-  { name: 'ABOUT', href: '/about' },
   { name: 'CAREERS', href: '/careers' },
   { name: 'CONTACT', href: '/contact' },
 ]

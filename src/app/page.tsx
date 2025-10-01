@@ -138,35 +138,32 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <h4 className="text-lg font-semibold mb-8 text-center">Featured Instagram Posts</h4>
-              {/* Three Manual Embeds - Responsive Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-
-                {/* Post 1 - Replace placeholder with actual Instagram embed */}
-                <div className="w-full flex justify-center">
-                  <div className="w-full max-w-sm sm:max-w-xs md:max-w-sm">
-                    <InstagramEmbed
-                      url='https://www.instagram.com/reel/DLVoY5Los9U/?utm_source=ig_embed&utm_campaign=loading'
-                      captioned={false}
-                    />
+              
+              {/* Mobile Slider - Hidden on MD+ */}
+              <div className="md:hidden">
+                <div className="flex gap-4 overflow-x-auto scrollbar-hide px-4 snap-x snap-mandatory">
+                  <div className="flex-shrink-0 snap-center w-80">
+                    <InstagramEmbed url="https://www.instagram.com/reel/DLVoY5Los9U/?utm_source=ig_embed&utm_campaign=loading" captioned={false} />
+                  </div>
+                  <div className="flex-shrink-0 snap-center w-80">
+                    <InstagramEmbed url='https://www.instagram.com/reel/DNn94boowUt/?utm_source=ig_embed&utm_campaign=loading' captioned={false} />
+                  </div>
+                  <div className="flex-shrink-0 snap-center w-80">
+                    <InstagramEmbed url='https://www.instagram.com/reel/DLVoFqwo7LQ/?utm_source=ig_embed&utm_campaign=loading' captioned={false} />
                   </div>
                 </div>
+              </div>
 
-                {/* Post 2 - Replace placeholder with actual Instagram embed */}
-                <div className="w-full flex justify-center">
-                  <div className="w-full max-w-sm sm:max-w-xs md:max-w-sm">
-                    <InstagramEmbed
-                      url='https://www.instagram.com/reel/DNn94boowUt/?utm_source=ig_embed&utm_campaign=loading'
-                    />
-                  </div>
+              {/* Desktop Grid - Hidden on Mobile */}
+              <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div className="flex justify-center">
+                  <InstagramEmbed url="https://www.instagram.com/reel/DLVoY5Los9U/?utm_source=ig_embed&utm_campaign=loading" captioned={false} />
                 </div>
-
-                {/* Post 3 - Replace placeholder with actual Instagram embed */}
-                <div className="w-full flex justify-center">
-                  <div className="w-full max-w-sm sm:max-w-xs md:max-w-sm">
-                    <InstagramEmbed
-                      url='https://www.instagram.com/reel/DLVoFqwo7LQ/?utm_source=ig_embed&utm_campaign=loading'
-                    />
-                  </div>
+                <div className="flex justify-center">
+                  <InstagramEmbed url='https://www.instagram.com/reel/DNn94boowUt/?utm_source=ig_embed&utm_campaign=loading' captioned={false} />
+                </div>
+                <div className="flex justify-center">
+                  <InstagramEmbed url='https://www.instagram.com/reel/DLVoFqwo7LQ/?utm_source=ig_embed&utm_campaign=loading' captioned={false} />
                 </div>
               </div>
             </motion.div>

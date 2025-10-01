@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design tokens from new brand palette */
+/* Design tokens from sage green palette */
 :root {
   --color-bg: #FAF9F6;              /* Off-white background */
   --color-alt-bg: #BDCCC4;          /* Muted Sage for sections */
@@ -13,7 +13,7 @@
   --radius: 1rem;
 }
 
-/* Dark mode - keep same colors as light mode */
+/* Dark mode - keep same sage colors as light mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-bg: #FAF9F6;            /* Same off-white background */
