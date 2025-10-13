@@ -214,9 +214,44 @@ export default function MenuPage() {
     const handleScroll = () => {
       const heroHeight = 300 // Approximate hero section height
       setIsSticky(window.scrollY > heroHeight)
+      
+      // Find the currently visible section
+      const sections = categories.map(category => {
+        const element = document.getElementById(category.id)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          const offset = 150 // Account for sticky header + some buffer
+          return {
+            id: category.id,
+            top: rect.top,
+            bottom: rect.bottom,
+            isVisible: rect.top <= offset && rect.bottom > offset
+          }
+        }
+        return null
+      }).filter(Boolean)
+      
+      // Find the section that's currently in view
+      const visibleSection = sections.find(section => section?.isVisible)
+      if (visibleSection) {
+        setActiveCategory(visibleSection.id)
+      } else {
+        // If no section is perfectly in view, find the closest one
+        const closestSection = sections.reduce((closest, current) => {
+          if (!current || !closest) return current || closest
+          const currentDistance = Math.abs(current.top - 150)
+          const closestDistance = Math.abs(closest.top - 150)
+          return currentDistance < closestDistance ? current : closest
+        }, null)
+        
+        if (closestSection) {
+          setActiveCategory(closestSection.id)
+        }
+      }
     }
 
     window.addEventListener('scroll', handleScroll)
+    handleScroll() // Call once to set initial state
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -245,7 +280,7 @@ export default function MenuPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
             >
-              Our menu
+              Our Menu
             </motion.h1>
             <motion.p 
               className="text-lg text-gray-600 mb-8"
@@ -262,7 +297,7 @@ export default function MenuPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <Button variant="secondary" size="md" className="whitespace-nowrap w-40 h-12" asChild>
+              <Button size="md" className="whitespace-nowrap w-40 h-12 bg-alt-bg text-white hover:bg-alt-bg/90" asChild>
                 <a 
                   href={`tel:${formatPhoneForTel(site.phone)}`}
                   aria-label="Call to place order"
@@ -293,7 +328,7 @@ export default function MenuPage() {
                   onClick={() => scrollToCategory(category.id)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-medium transition-all duration-300 ${
                     isActive 
-                      ? category.color
+                      ? 'bg-black text-white'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                   whileHover={{ scale: 1.05 }}
@@ -324,7 +359,7 @@ export default function MenuPage() {
               <div className={`p-2 rounded-lg ${category.color}`}>
                 <category.icon className="w-6 h-6" />
               </div>
-              <h2 className="text-3xl font-bold text-fg">{category.name}</h2>
+              <h2 className="text-3xl font-normal text-fg">{category.name}</h2>
             </div>
             
             <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -346,8 +381,8 @@ export default function MenuPage() {
                     {/* Content */}
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="text-lg font-semibold text-fg">{item.name}</h3>
-                        <span className="text-xl font-bold text-cta">{item.price}</span>
+                        <h3 className="text-lg font-normal text-fg">{item.name}</h3>
+                        <span className="text-xl font-normal text-cta">{item.price}</span>
                       </div>
                       <p className="text-gray-600 leading-relaxed">
                         {item.description}

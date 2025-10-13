@@ -134,7 +134,7 @@ export default function HomePage() {
             >
               <Button 
                 size="md" 
-                className="bg-white text-black hover:bg-gray-100 rounded-full px-12 py-2 text-base font-bold uppercase tracking-wide min-w-[200px] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  className="bg-white text-black hover:bg-gray-100 rounded-full px-12 py-2 text-base font-normal uppercase tracking-wide min-w-[220px] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 style={{ fontFamily: 'Aftetir, sans-serif', color: '#000000' }}
                 asChild
               >
@@ -155,7 +155,7 @@ export default function HomePage() {
             >
               <Button 
                 size="md" 
-                className="bg-black text-white hover:bg-gray-800 rounded-full px-12 py-2 text-base font-bold uppercase tracking-wide min-w-[200px] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  className="bg-black text-white hover:bg-gray-800 rounded-full px-12 py-2 text-base font-normal uppercase tracking-wide min-w-[220px] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 style={{ fontFamily: 'Aftetir, sans-serif' }}
                 asChild
               >
@@ -243,12 +243,12 @@ export default function HomePage() {
                       {/* Content section with consistent height */}
                       <div className="p-6 flex flex-col justify-between h-32">
                         <div className="flex-grow flex items-center justify-center">
-                          <h4 className="text-lg font-bold text-gray-900 text-center leading-tight">
+                          <h4 className="text-lg font-normal text-gray-900 text-center leading-tight">
                             {product.name}
                           </h4>
                         </div>
                         <Button
-                          className="w-full bg-gradient-to-r from-gray-900 to-black text-white hover:from-black hover:to-gray-800 rounded-xl py-3 font-semibold uppercase tracking-wider transition-all duration-300 text-xs shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                          className="w-full bg-gradient-to-r from-gray-900 to-black text-white hover:from-black hover:to-gray-800 rounded-xl py-3 font-normal uppercase tracking-wider transition-all duration-300 text-xs shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
                           style={{ fontFamily: 'Aftetir, sans-serif' }}
                           asChild
                         >
@@ -273,7 +273,7 @@ export default function HomePage() {
             >
               <Button
                 size="lg"
-                className="bg-alt-bg text-white hover:bg-alt-bg/90 rounded-full px-12 py-2 font-bold uppercase tracking-wider transition-all duration-300 text-base shadow-lg hover:shadow-xl transform hover:scale-105 min-w-[240px]"
+                  className="bg-alt-bg text-white hover:bg-alt-bg/90 rounded-full px-12 py-2 font-normal uppercase tracking-wider transition-all duration-300 text-base shadow-lg hover:shadow-xl transform hover:scale-105 min-w-[240px]"
                 style={{ fontFamily: 'Aftetir, sans-serif' }}
                 asChild
               >

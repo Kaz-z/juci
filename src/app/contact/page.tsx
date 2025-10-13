@@ -98,11 +98,11 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      <div className="container-max section-padding">
+      <div className="container-max section-padding pb-24">
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div className="lg:col-span-1">
-            <h2 className="text-2xl font-bold text-fg mb-6">Contact Information</h2>
+            <h2 className="text-2xl font-normal text-fg mb-6">Contact Information</h2>
             
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
@@ -110,7 +110,7 @@ export default function ContactPage() {
                   <Phone className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-fg mb-1">Phone</h3>
+                  <h3 className="font-normal text-fg mb-1">Phone</h3>
                   <a 
                     href={`tel:${formatPhoneForTel(site.phone)}`}
                     className="text-gray-600 hover:text-cta transition-colors"
@@ -126,7 +126,7 @@ export default function ContactPage() {
                   <Mail className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-fg mb-1">Email</h3>
+                  <h3 className="font-normal text-fg mb-1">Email</h3>
                   <a 
                     href={`mailto:${site.email}`}
                     className="text-gray-600 hover:text-cta transition-colors"
@@ -142,7 +142,7 @@ export default function ContactPage() {
                   <MapPin className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-fg mb-1">Address</h3>
+                  <h3 className="font-normal text-fg mb-1">Address</h3>
                   <address className="text-gray-600 not-italic">
                     {site.address}
                   </address>
@@ -154,7 +154,7 @@ export default function ContactPage() {
                   <Clock className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-fg mb-1">Hours</h3>
+                  <h3 className="font-normal text-fg mb-1">Hours</h3>
                   <div className="text-gray-600 space-y-1 text-sm">
                     {site.hours.map((hour, index) => (
                       <div key={index}>
@@ -166,37 +166,11 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-
-            <div className="mt-8 p-6 bg-cta/10 rounded-xl border border-cta/20">
-              <h3 className="font-semibold text-fg mb-3">Quick Contact</h3>
-              <div className="space-y-3">
-                <Button variant="secondary" size="sm" className="w-full whitespace-nowrap" asChild>
-                  <a 
-                    href={`tel:${formatPhoneForTel(site.phone)}`}
-                    aria-label="Call us now"
-                    className="flex items-center justify-center gap-1.5"
-                  >
-                    <Phone className="h-4 w-4 flex-shrink-0" />
-                    <span>Call Now</span>
-                  </a>
-                </Button>
-                <Button variant="secondary" size="sm" className="w-full whitespace-nowrap" asChild>
-                  <a 
-                    href={`mailto:${site.email}`}
-                    aria-label="Email us now"
-                    className="flex items-center justify-center gap-1.5"
-                  >
-                    <Mail className="h-4 w-4 flex-shrink-0" />
-                    <span>Send Email</span>
-                  </a>
-                </Button>
-              </div>
-            </div>
           </div>
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-fg mb-6">Send us a Message</h2>
+            <h2 className="text-2xl font-normal text-fg mb-6">Send us a Message</h2>
 
             {submitStatus === 'success' && (
               <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center">
@@ -288,7 +262,7 @@ export default function ContactPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full"
+                className="w-full font-normal"
                 size="lg"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}

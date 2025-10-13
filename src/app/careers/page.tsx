@@ -1,29 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { Upload, CheckCircle, AlertCircle, Users, Heart, Zap } from 'lucide-react'
+import { Upload, CheckCircle, AlertCircle } from 'lucide-react'
 import { site } from '../../../site.config'
 import Section from '@/components/Section'
 import Button from '@/components/Button'
 import { jobApplicationSchema, validateFile, sanitizeFormData, type JobApplicationData } from '@/lib/validators'
-
-const benefits = [
-  {
-    icon: Heart,
-    title: 'Health & Wellness',
-    description: 'Free juices and smoothies, plus health insurance coverage'
-  },
-  {
-    icon: Users,
-    title: 'Great Team',
-    description: 'Work with passionate people who love healthy living'
-  },
-  {
-    icon: Zap,
-    title: 'Growth Opportunities',
-    description: 'Training programs and career advancement opportunities'
-  }
-]
 
 const roles = [
   { value: 'barista', label: 'Juice Barista' },
@@ -159,26 +141,8 @@ export default function CareersPage() {
         </div>
       </Section>
 
-      {/* Benefits */}
-      <Section title="Why Work at Juci?" className="bg-gray-50">
-        <div className="grid md:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => {
-            const IconComponent = benefit.icon
-            return (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-cta rounded-full flex items-center justify-center mx-auto mb-4">
-                  <IconComponent className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-fg mb-3">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
-              </div>
-            )
-          })}
-        </div>
-      </Section>
-
       {/* Application Form */}
-      <Section title="Apply Now" kicker="Ready to Join?">
+      <Section title="Apply Now" kicker="Ready to Join?" className="font-normal">
         <div className="max-w-2xl mx-auto">
           {submitStatus === 'success' && (
             <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center">
@@ -356,7 +320,7 @@ export default function CareersPage() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full"
+              className="w-full font-normal"
               size="lg"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Application'}
