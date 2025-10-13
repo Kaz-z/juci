@@ -234,7 +234,7 @@ export default function MenuPage() {
   }
 
   return (
-    <div className="pt-24 min-h-screen bg-bg">
+    <div className="min-h-screen bg-bg">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-cta/10 to-accent/5 py-16">
         <div className="container-max section-padding">
@@ -262,19 +262,19 @@ export default function MenuPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Button size="sm" className="whitespace-nowrap w-40 h-10" asChild>
+              <Button size="md" className="whitespace-nowrap w-40 h-12" asChild>
                 <a 
                   href={site.pdfMenuUrl} 
-                  download
-                  aria-label="Download PDF menu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View PDF menu"
                   className="flex items-center justify-center gap-1.5"
                 >
-                  <Download className="h-4 w-4 flex-shrink-0" />
                   <span>Download Menu</span>
                 </a>
               </Button>
               
-              <Button variant="secondary" size="sm" className="whitespace-nowrap w-40 h-10" asChild>
+              <Button variant="secondary" size="md" className="whitespace-nowrap w-40 h-12" asChild>
                 <a 
                   href={`tel:${formatPhoneForTel(site.phone)}`}
                   aria-label="Call to place order"
@@ -290,7 +290,7 @@ export default function MenuPage() {
       </div>
 
       {/* Sticky Category Navigation */}
-      <div className={`sticky top-24 z-40 bg-bg/95 backdrop-blur-sm border-b border-gray-200 transition-all duration-300 ${
+      <div className={`sticky top-0 z-40 bg-bg/95 backdrop-blur-sm border-b border-gray-200 transition-all duration-300 ${
         isSticky ? 'shadow-lg' : ''
       }`}>
         <div className="container-max section-padding py-4">

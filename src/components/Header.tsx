@@ -1,31 +1,24 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { createPortal } from 'react-dom'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { site } from '../../site.config'
 import Button from './Button'
 
 const navigation = [
+  { name: 'HOME', href: '/' },
   { name: 'MENU', href: '/menu' },
   { name: 'CAREERS', href: '/careers' },
   { name: 'CONTACT', href: '/contact' },
 ]
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const isHomePage = pathname === '/'
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,195 +30,174 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [mobileMenuOpen])
-
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-cta backdrop-blur-sm shadow-lg' 
-          : 'bg-transparent'
-      }`}>
-        <nav className="container-max section-padding">
-          <div className="flex justify-between items-center h-24 py-8">
-            {/* Logo */}
-                      <Link 
-            href="/" 
-            className={`text-4xl font-bold transition-colors ${
-              isScrolled
-                ? 'text-white hover:text-white'
-                : isHomePage
-                  ? 'text-white hover:text-highlight'
-                  : 'text-fg hover:text-cta'
-            }`}
-            aria-label="Juci home"
-          >
-              {site.name}
-            </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-                          {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`relative px-2 py-1 font-medium text-lg transition-all duration-300 ease-in-out overflow-hidden group ${
-                  isScrolled
-                    ? 'text-white/90 hover:text-cta'
-                    : isHomePage
-                      ? 'text-white/90 hover:text-cta'
-                      : 'text-fg/80 hover:text-cta'
-                }`}
-              >
-                <span className="relative z-10">{item.name}</span>
-                <div className="absolute inset-0 bg-white transform scale-y-0 origin-bottom transition-transform duration-300 ease-in-out group-hover:scale-y-100"></div>
-              </Link>
-            ))}
-            </div>
-
-            {/* Mobile menu button */}
+      <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Mobile Menu Button - Left Side (Mobile Only) */}
             <div className="lg:hidden">
               <button
                 type="button"
-                className={`p-2 rounded-md transition-colors ${
-                  isScrolled
-                    ? 'text-white hover:text-white/70'
-                    : isHomePage
-                      ? 'text-white hover:text-highlight'
-                      : 'text-fg hover:text-cta'
-                }`}
+                className="p-2 text-gray-900 hover:text-gray-600 transition-colors"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle mobile menu"
               >
-                {mobileMenuOpen ? (
-                  <X className="h-8 w-8" />
-                ) : (
-                  <Menu className="h-8 w-8" />
-                )}
+                <div className="w-6 h-5 relative">
+                  {/* Top line */}
+                  <motion.span
+                    className="absolute left-0 h-0.5 w-6 bg-current transform origin-center"
+                    animate={{
+                      rotate: mobileMenuOpen ? 45 : 0,
+                      y: mobileMenuOpen ? 9 : 4,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  />
+                  {/* Bottom line */}
+                  <motion.span
+                    className="absolute left-0 h-0.5 w-6 bg-current transform origin-center"
+                    animate={{
+                      rotate: mobileMenuOpen ? -45 : 0,
+                      y: mobileMenuOpen ? 9 : 16,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  />
+                </div>
               </button>
             </div>
-          </div>
-        </nav>
-      </header>
 
-      {/* Mobile Navigation - Portal to Body */}
-      {mounted && createPortal(
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div 
-            className="lg:hidden fixed inset-0 z-[9999] bg-cta"
-            style={{ 
-              position: 'fixed', 
-              top: 0, 
-              left: 0, 
-              right: 0, 
-              bottom: 0,
-              width: '100vw',
-              height: '100vh',
-              zIndex: 9999
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-          {/* Close button */}
-          <motion.div 
-            className="absolute top-6 right-4"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.2 }}
-          >
-            <button
-              type="button"
-              className="p-2 rounded-md text-white hover:text-white/70 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close mobile menu"
+            {/* Logo - Left on Desktop, Center on Mobile */}
+            <motion.div 
+              className="flex items-center lg:flex-1"
+              layout
+              transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              <X className="h-8 w-8" />
-            </button>
-          </motion.div>
+              <Link 
+                href="/" 
+                className="flex items-center hover:opacity-90 transition-opacity lg:justify-start justify-center w-full lg:w-auto"
+                aria-label="Juci home"
+              >
+                <motion.img 
+                  src="/images/juci-logo-circle.png" 
+                  alt="Juci Logo" 
+                  className="h-10 w-10"
+                  layout
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                />
+              </Link>
+            </motion.div>
 
-          {/* Menu Content */}
-          <div className="flex flex-col items-center justify-center h-full px-8">
-            <div className="flex flex-col items-center space-y-12 text-center">
+            {/* Desktop Navigation - Center */}
+            <motion.div 
+              className="hidden lg:flex items-center space-x-8 flex-1 justify-center"
+              initial={false}
+              animate={{ 
+                opacity: 1,
+                scale: 1,
+                x: 0
+              }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
               {navigation.map((item, index) => (
                 <motion.div
                   key={item.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
+                  initial={false}
+                  animate={{ 
+                    opacity: 1,
+                    y: 0
+                  }}
                   transition={{ 
                     duration: 0.3, 
-                    delay: mobileMenuOpen ? 0.1 + (index * 0.1) : (navigation.length - index - 1) * 0.05,
-                    ease: "easeOut" 
+                    ease: "easeInOut",
+                    delay: index * 0.05
                   }}
                 >
                   <Link
                     href={item.href}
-                    className="text-white font-bold text-4xl sm:text-4xl md:text-4xl lg:text-6xl hover:text-white/80 transition-colors uppercase tracking-wide"
-                    onClick={() => setMobileMenuOpen(false)}
+                    className="relative font-normal text-base uppercase tracking-wide text-gray-900 hover:text-gray-600 transition-colors group py-2"
+                    style={{ fontFamily: 'Aftetir, sans-serif' }}
                   >
                     {item.name}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cta transition-all duration-300 ease-out group-hover:w-full"></span>
                   </Link>
                 </motion.div>
               ))}
-              
-              {/* Social Media Icons */}
+            </motion.div>
+
+            {/* Right Side - Sign Up/Login (Desktop Only) + Mobile Spacer */}
+            <motion.div 
+              className="flex items-center space-x-4 lg:flex-1 lg:justify-end"
+              layout
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              {/* Sign Up/Login Button - Desktop Only */}
               <motion.div 
-                className="flex items-center space-x-8 pt-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ 
-                  duration: 0.3, 
-                  delay: mobileMenuOpen ? 0.6 : 0,
-                  ease: "easeOut" 
+                className="hidden lg:flex items-center"
+                initial={false}
+                animate={{ 
+                  opacity: 1,
+                  scale: 1,
+                  x: 0
                 }}
+                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
               >
-                <a 
-                  href={site.socials.instagram} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-white/80 transition-colors"
-                  aria-label="Instagram"
+                <Button 
+                  className="bg-black text-white hover:bg-gray-800 rounded-full px-6 py-2 text-sm font-normal uppercase tracking-wide"
+                  style={{ fontFamily: 'Aftetir, sans-serif' }}
+                  asChild
                 >
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.004 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.718-6.541c-.807 0-1.297-.49-1.297-1.297s.49-1.297 1.297-1.297 1.297.49 1.297 1.297-.49 1.297-1.297 1.297z"/>
-                  </svg>
-                </a>
-                <a 
-                  href={site.socials.tiktok} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-white/80 transition-colors"
-                  aria-label="TikTok"
-                >
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                  </svg>
-                </a>
+                  <Link href="/follow">
+                    FOLLOW US
+                  </Link>
+                </Button>
               </motion.div>
-            </div>
+              
+              {/* Mobile Spacer to balance the hamburger menu */}
+              <div className="lg:hidden w-10"></div>
+            </motion.div>
           </div>
-        </motion.div>
+        </nav>
+      </header>
+
+      {/* Mobile Navigation Sidebar */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            className="lg:hidden fixed left-0 bottom-0 z-50 w-80 bg-white shadow-xl"
+            style={{ top: '64px' }}
+            initial={{ x: -320 }}
+            animate={{ x: 0 }}
+            exit={{ x: -320 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            {/* Navigation Items */}
+            <div className="h-full px-6 py-8 overflow-y-auto">
+              <nav className="space-y-2">
+                {navigation.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={item.href}
+                      className="flex items-center justify-between px-4 py-4 text-lg font-normal text-gray-900 hover:bg-gray-50 rounded-xl transition-colors"
+                      style={{ fontFamily: 'Aftetir, sans-serif' }}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <span>{item.name}</span>
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+            </div>
+          </motion.div>
         )}
-      </AnimatePresence>,
-      document.body
-    )}
+      </AnimatePresence>
     </>
   )
 }

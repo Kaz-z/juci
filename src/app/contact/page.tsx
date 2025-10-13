@@ -87,7 +87,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="pt-24">
+    <div>
       {/* Hero Section */}
       <Section title="Get in Touch">
         <div className="text-center max-w-3xl mx-auto">

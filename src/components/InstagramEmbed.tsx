@@ -249,3 +249,5 @@ export function InstagramEmbed({ postUrl, className = "" }: InstagramEmbedProps)
     </div>
   )
 }
+
+

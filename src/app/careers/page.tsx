@@ -148,7 +148,7 @@ export default function CareersPage() {
   }
 
   return (
-    <div className="pt-24">
+    <div>
       {/* Hero Section */}
       <Section title="Join Our Team" kicker="Careers">
         <div className="text-center max-w-3xl mx-auto">
