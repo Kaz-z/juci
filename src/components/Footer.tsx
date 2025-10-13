@@ -45,7 +45,7 @@ export default function Footer() {
                 <div key={index} className="flex justify-between">
                   <span>{hour.day}</span>
                   <span>
-                    {hour.open === 'Closed' ? 'Closed' : `${hour.open} - ${hour.close}`}
+                    {hour.open} - {hour.close}
                   </span>
                 </div>
               ))}
