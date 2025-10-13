@@ -209,7 +209,7 @@ export default function HomePage() {
                 navigation
                 pagination={{ clickable: true }}
                 autoplay={{
-                  delay: 3000,
+                  delay: 6000,
                   disableOnInteraction: false,
                 }}
                 loop={true}
@@ -273,7 +273,7 @@ export default function HomePage() {
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-cta to-accent text-white hover:from-accent hover:to-cta rounded-full px-8 py-4 font-bold uppercase tracking-wider transition-all duration-300 text-base shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="bg-alt-bg text-white hover:bg-alt-bg/90 rounded-full px-8 py-4 font-bold uppercase tracking-wider transition-all duration-300 text-base shadow-lg hover:shadow-xl transform hover:scale-105"
                 style={{ fontFamily: 'Aftetir, sans-serif' }}
                 asChild
               >

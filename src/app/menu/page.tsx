@@ -241,39 +241,27 @@ export default function MenuPage() {
           <div className="text-center max-w-3xl mx-auto">
             <motion.h1 
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-fg mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
             >
-              Our Fresh Menu
+              Our menu
             </motion.h1>
             <motion.p 
               className="text-lg text-gray-600 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
               Every juice, smoothie, and bowl is crafted fresh with premium ingredients
             </motion.p>
             
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <Button size="md" className="whitespace-nowrap w-40 h-12" asChild>
-                <a 
-                  href={site.pdfMenuUrl} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View PDF menu"
-                  className="flex items-center justify-center gap-1.5"
-                >
-                  <span>Download Menu</span>
-                </a>
-              </Button>
-              
               <Button variant="secondary" size="md" className="whitespace-nowrap w-40 h-12" asChild>
                 <a 
                   href={`tel:${formatPhoneForTel(site.phone)}`}
@@ -327,10 +315,10 @@ export default function MenuPage() {
             key={category.id}
             id={category.id}
             className="mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-3 mb-8">
               <div className={`p-2 rounded-lg ${category.color}`}>
@@ -344,11 +332,10 @@ export default function MenuPage() {
                 <motion.div
                   key={item.name}
                   className="bg-white rounded-xl p-6 border border-gray-200 hover:border-cta/50 hover:shadow-lg transition-all duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
                   <div className="flex items-start gap-4">
                     {/* Emoji/Icon */}
