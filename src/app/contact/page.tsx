@@ -159,7 +159,7 @@ export default function ContactPage() {
                     {site.hours.map((hour, index) => (
                       <div key={index}>
                         <span className="font-medium">{hour.day}:</span>{' '}
-                        {hour.open === 'Closed' ? 'Closed' : `${hour.open} - ${hour.close}`}
+                        {`${hour.open} - ${hour.close}`}
                       </div>
                     ))}
                   </div>

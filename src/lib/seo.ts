@@ -72,7 +72,6 @@ export function generateLocalBusinessStructuredData() {
       addressCountry: 'GB',
     },
     openingHours: site.hours
-      .filter(h => h.open !== 'Closed')
       .map(h => {
         const days = h.day.includes('–') 
           ? h.day.split('–').map(d => d.trim())

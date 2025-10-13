@@ -18,21 +18,16 @@ export default function HoursTable() {
             <tr 
               key={index} 
               className={cn(
-                'border-b border-gray-100 last:border-0',
-                hour.open === 'Closed' && 'text-gray-500'
+                'border-b border-gray-100 last:border-0'
               )}
             >
               <td className="px-6 py-4 font-medium text-fg">
                 {hour.day}
               </td>
               <td className="px-6 py-4 text-right">
-                {hour.open === 'Closed' ? (
-                  <span className="text-gray-500">Closed</span>
-                ) : (
-                  <span className="text-fg">
-                    {hour.open} - {hour.close}
-                  </span>
-                )}
+                <span className="text-fg">
+                  {hour.open} - {hour.close}
+                </span>
               </td>
             </tr>
           ))}
