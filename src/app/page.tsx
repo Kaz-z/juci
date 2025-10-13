@@ -134,7 +134,7 @@ export default function HomePage() {
             >
               <Button 
                 size="md" 
-                className="bg-white text-black hover:bg-gray-100 rounded-full px-6 py-3 text-base font-bold uppercase tracking-wide min-w-[160px] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="bg-white text-black hover:bg-gray-100 rounded-full px-12 py-2 text-base font-bold uppercase tracking-wide min-w-[200px] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 style={{ fontFamily: 'Aftetir, sans-serif', color: '#000000' }}
                 asChild
               >
@@ -155,7 +155,7 @@ export default function HomePage() {
             >
               <Button 
                 size="md" 
-                className="bg-black text-white hover:bg-gray-800 rounded-full px-6 py-3 text-base font-bold uppercase tracking-wide min-w-[160px] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="bg-black text-white hover:bg-gray-800 rounded-full px-12 py-2 text-base font-bold uppercase tracking-wide min-w-[200px] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 style={{ fontFamily: 'Aftetir, sans-serif' }}
                 asChild
               >
@@ -273,7 +273,7 @@ export default function HomePage() {
             >
               <Button
                 size="lg"
-                className="bg-alt-bg text-white hover:bg-alt-bg/90 rounded-full px-8 py-4 font-bold uppercase tracking-wider transition-all duration-300 text-base shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="bg-alt-bg text-white hover:bg-alt-bg/90 rounded-full px-12 py-2 font-bold uppercase tracking-wider transition-all duration-300 text-base shadow-lg hover:shadow-xl transform hover:scale-105 min-w-[240px]"
                 style={{ fontFamily: 'Aftetir, sans-serif' }}
                 asChild
               >

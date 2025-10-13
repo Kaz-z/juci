@@ -32,7 +32,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+      <header className="bg-white border-b border-gray-200">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Mobile Menu Button - Left Side (Mobile Only) */}
@@ -123,8 +123,8 @@ export default function Header() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="lg:hidden fixed left-0 bottom-0 z-50 w-80 bg-white shadow-xl"
-            style={{ top: '64px' }}
+            className="lg:hidden absolute left-0 z-50 w-80 bg-white shadow-xl"
+            style={{ top: '64px', height: 'calc(100vh - 64px)' }}
             initial={{ x: -320 }}
             animate={{ x: 0 }}
             exit={{ x: -320 }}
