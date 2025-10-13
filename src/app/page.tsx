@@ -193,7 +193,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Discover our customers' favorite juices, smoothies & healthy bites
+              Discover our customers favorite juices, smoothies & healthy bites
             </motion.p>
             
             <motion.div
