@@ -271,17 +271,16 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              <Button
-                size="lg"
-                  className="bg-alt-bg text-white hover:bg-alt-bg/90 rounded-full px-12 py-2 font-normal uppercase tracking-wider transition-all duration-300 text-base shadow-lg hover:shadow-xl transform hover:scale-105 min-w-[240px]"
-                style={{ fontFamily: 'Aftetir, sans-serif' }}
-                asChild
-              >
-                <Link href="/menu" className="flex items-center gap-2">
+              <Link href="/menu">
+                <Button
+                  size="lg"
+                  className="bg-alt-bg text-white hover:bg-alt-bg/90 rounded-full px-12 py-2 font-normal uppercase tracking-wider transition-all duration-300 text-base shadow-lg hover:shadow-xl transform hover:scale-105 min-w-[240px] flex items-center gap-2"
+                  style={{ fontFamily: 'Aftetir, sans-serif' }}
+                >
                   SEE THE FULL MENU
                   <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

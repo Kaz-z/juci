@@ -93,7 +93,7 @@ export default function ContactPage() {
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-xl text-gray-600 mb-8">
             Have a question, want to partner with us, or just say hello? 
-            We&lsquo;&lsquo;d love to hear from you!
+            We&lsquo;d love to hear from you!
           </p>
         </div>
       </Section>
@@ -113,7 +113,7 @@ export default function ContactPage() {
                   <h3 className="font-normal text-fg mb-1">Phone</h3>
                   <a 
                     href={`tel:${formatPhoneForTel(site.phone)}`}
-                    className="text-gray-600 hover:text-cta transition-colors"
+                    className="text-fg/70 hover:text-cta transition-colors"
                     aria-label="Call us"
                   >
                     {formatPhoneForDisplay(site.phone)}
@@ -129,7 +129,7 @@ export default function ContactPage() {
                   <h3 className="font-normal text-fg mb-1">Email</h3>
                   <a 
                     href={`mailto:${site.email}`}
-                    className="text-gray-600 hover:text-cta transition-colors"
+                    className="text-fg/70 hover:text-cta transition-colors"
                     aria-label="Email us"
                   >
                     {site.email}
