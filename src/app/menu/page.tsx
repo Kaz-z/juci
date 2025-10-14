@@ -34,6 +34,18 @@ const categories = [
     color: 'bg-highlight text-fg'
   },
   { 
+    id: 'wellness-shots', 
+    name: 'Wellness Shots', 
+    icon: Zap,
+    color: 'bg-cta text-white'
+  },
+  { 
+    id: 'matchas', 
+    name: 'Matchas', 
+    icon: Coffee,
+    color: 'bg-accent text-white'
+  },
+  { 
     id: 'snacks', 
     name: 'Snacks & Treats', 
     icon: Cookie,
@@ -50,11 +62,11 @@ const categories = [
 const menuItems = {
   'hot-picks': [
     {
-      name: 'Green Goddess Supreme',
-      description: 'Spinach, kale, apple, cucumber, lemon, ginger, spirulina',
-      price: '£6.50',
-      emoji: '🌿',
-      badge: 'PREMIUM',
+      name: 'The Classic Bowl',
+      description: 'Açaí • Granola • Peanut Butter • Banana • Cacao Nibs • Coconut',
+      price: '£7.95',
+      emoji: '🍌',
+      badge: 'POPULAR',
       badgeColor: 'bg-black text-white'
     },
     {
@@ -66,108 +78,190 @@ const menuItems = {
       badgeColor: 'bg-accent text-white'
     },
     {
-      name: 'Tropical Paradise Bowl',
-      description: 'Açaí, mango, pineapple, coconut, granola, fresh berries',
-      price: '£9.50',
-      emoji: '🏝️',
-      badge: 'NEW',
-      badgeColor: 'bg-accent text-white'
+      name: 'Cheat Day Bowl',
+      description: 'Açaí • Granola • Milk Chocolate Sauce • Biscoff • Chocolate Chips • Strawberry',
+      price: '£9.95',
+      emoji: '🍓',
+      badge: 'INDULGENT',
+      badgeColor: 'bg-cta text-white'
     }
   ],
   'fresh-juices': [
     {
-      name: 'Green Machine',
-      description: 'Spinach, kale, apple, cucumber, lemon, ginger',
-      price: '£5.50',
-      emoji: '🥬'
-    },
-    {
-      name: 'Immunity Boost',
-      description: 'Orange, carrot, turmeric, ginger, lemon',
-      price: '£5.00',
-      emoji: '🥕'
-    },
-    {
-      name: 'Beet the Day',
-      description: 'Beetroot, apple, carrot, lemon, mint',
-      price: '£5.50',
+      name: 'The Unbeatable',
+      description: 'Beetroot • Apple • Pear • Pineapple • Ginger',
+      price: '£4.95',
       emoji: '🍎'
     },
     {
-      name: 'Citrus Burst',
-      description: 'Orange, grapefruit, lemon, lime, mint',
-      price: '£4.80',
+      name: 'One in a Melon',
+      description: 'Watermelon • Lime • Mint',
+      price: '£5.95',
+      emoji: '🍉'
+    },
+    {
+      name: '24 Carrot',
+      description: 'Carrot • Apple • Ginger',
+      price: '£4.95',
+      emoji: '🥕'
+    },
+    {
+      name: 'Orange You Thirsty',
+      description: '100% freshly squeezed Oranges',
+      price: '£5.95',
       emoji: '🍊'
     },
     {
-      name: 'Detox Delight',
-      description: 'Celery, cucumber, green apple, lemon, parsley',
-      price: '£5.20',
-      emoji: '🥒'
+      name: 'Kiwi to My Heart',
+      description: 'Kiwi • Apple • Pear • Lime • Cucumber • Kale • Pineapple',
+      price: '£4.95',
+      emoji: '🥝'
     },
     {
-      name: 'Ginger Shot',
-      description: 'Fresh ginger, lemon, cayenne pepper',
-      price: '£2.50',
-      emoji: '⚡'
+      name: 'Pome Alone',
+      description: '100% freshly squeezed Pomegranate',
+      price: '£5.95',
+      emoji: '🫐'
+    },
+    {
+      name: "It's Mint to Be",
+      description: 'Mint • Pineapple • Apple • Lemon',
+      price: '£4.95',
+      emoji: '🍃'
+    },
+    {
+      name: 'Citrus Got Real',
+      description: '100% freshly squeezed Orange and Pomegranate',
+      price: '£5.95',
+      emoji: '🍊'
     }
   ],
   'smoothies': [
     {
-      name: 'Berry Bliss',
-      description: 'Mixed berries, banana, almond milk, honey',
-      price: '£6.00',
+      name: 'Berry Good',
+      description: 'Strawberries • Blueberries • Banana • Chia Seeds • Apple • Dates',
+      price: '£5.95',
       emoji: '🫐'
     },
     {
-      name: 'Tropical Escape',
-      description: 'Mango, pineapple, coconut milk, lime',
-      price: '£6.50',
+      name: 'Mango-nificent',
+      description: 'Mango • Pineapple • Strawberries • Apple • Chia Seeds',
+      price: '£6.95',
       emoji: '🥭'
     },
     {
-      name: 'Protein Power',
-      description: 'Banana, peanut butter, oat milk, protein powder',
-      price: '£7.00',
-      emoji: '💪'
+      name: 'Kalefornia Sunshine',
+      description: 'Pineapple • Mango • Banana • Kale • Apple • Lemon • Ginger • Avocado',
+      price: '£5.95',
+      emoji: '🌞'
     },
     {
-      name: 'Chocolate Dream',
-      description: 'Banana, cacao, almond milk, dates, vanilla',
-      price: '£6.80',
+      name: 'Cacao Me Crazy',
+      description: 'Cacao • Banana • Avocado • Oat milk • Chia Seeds • Agave',
+      price: '£6.95',
       emoji: '🍫'
     },
     {
-      name: 'Green Smoothie',
-      description: 'Spinach, banana, apple, coconut water, lime',
-      price: '£5.80',
-      emoji: '🍃'
+      name: 'Pinka Colada (Super)',
+      description: 'Pineapple • Dragonfruit • Coconut Milk • Chia seeds • Collagen',
+      price: '£7.95',
+      emoji: '🌺'
+    },
+    {
+      name: 'Sapphire Bliss (Super)',
+      description: 'Mango • Pineapple • Spirulina • Maple Syrup • Oat milk • Sea Moss',
+      price: '£8.95',
+      emoji: '💙'
+    },
+    {
+      name: 'Maca Me Strong (Super)',
+      description: 'Banana • Peanut Butter • Chia seeds • Oat milk • Shilajit • Maca Root • Dates',
+      price: '£7.95',
+      emoji: '💪'
+    },
+    {
+      name: 'Beauty Booster (Super)',
+      description: 'Strawberries • Blueberries • Acai Berry • Apple • Hemp Seeds • Chia Seeds • Collagen',
+      price: '£8.95',
+      emoji: '✨'
     }
   ],
   'bowls': [
     {
-      name: 'Açaí Classic',
-      description: 'Açaí, banana, granola, fresh berries, coconut',
-      price: '£8.50',
-      emoji: '🍇'
-    },
-    {
-      name: 'Green Power Bowl',
-      description: 'Spinach smoothie base, granola, kiwi, chia seeds',
-      price: '£8.00',
-      emoji: '🥝'
-    },
-    {
-      name: 'Chocolate Bliss Bowl',
-      description: 'Cacao smoothie base, banana, nuts, dark chocolate',
-      price: '£8.50',
+      name: 'The Classic',
+      description: 'Açaí • Granola • Peanut Butter • Banana • Cacao Nibs • Coconut',
+      price: '£7.95',
       emoji: '🍌'
     },
     {
-      name: 'Tropical Bowl',
-      description: 'Mango smoothie base, coconut, pineapple, granola',
-      price: '£8.80',
-      emoji: '🥥'
+      name: 'Cheat Day',
+      description: 'Açaí • Granola • Milk Chocolate Sauce • Biscoff • Chocolate Chips • Strawberry',
+      price: '£9.95',
+      emoji: '🍓'
+    },
+    {
+      name: '5 A Day',
+      description: 'Açaí • Granola • Strawberry • Honey • Blueberry • Banana • Coconut',
+      price: '£7.95',
+      emoji: '🫐'
+    },
+    {
+      name: 'Weight Loss',
+      description: 'Açaí • Granola • Strawberry • Blueberry • Chia Pudding • Cacao Nibs',
+      price: '£9.95',
+      emoji: '💚'
+    },
+    {
+      name: 'Build Your Own (Regular)',
+      description: 'Açaí base with up to 4 toppings of your choice',
+      price: '£7.95',
+      emoji: '🎯'
+    },
+    {
+      name: 'Build Your Own (Large)',
+      description: 'Açaí base with unlimited toppings',
+      price: '£9.95',
+      emoji: '🎯'
+    }
+  ],
+  'wellness-shots': [
+    {
+      name: 'Skin Tonic',
+      description: 'Wellness shot for healthy glowing skin',
+      price: '£1.95',
+      emoji: '✨'
+    },
+    {
+      name: 'Immunity Boost',
+      description: 'Wellness shot to boost your immune system',
+      price: '£1.95',
+      emoji: '🛡️'
+    },
+    {
+      name: 'Energy Elixir',
+      description: 'Wellness shot for natural energy boost',
+      price: '£1.95',
+      emoji: '⚡'
+    }
+  ],
+  'matchas': [
+    {
+      name: 'Rose Matcha',
+      description: 'Premium ceremonial grade matcha with rose served over ice and blended with oat milk',
+      price: '£3.95',
+      emoji: '🌹'
+    },
+    {
+      name: 'Vanilla Matcha',
+      description: 'Premium ceremonial grade matcha with vanilla served over ice and blended with oat milk',
+      price: '£4.95',
+      emoji: '🍦'
+    },
+    {
+      name: 'Blueberry Matcha',
+      description: 'Premium ceremonial grade matcha with blueberry served over ice and blended with oat milk',
+      price: '£4.95',
+      emoji: '🫐'
     }
   ],
   'snacks': [
@@ -297,16 +391,18 @@ export default function MenuPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <Button size="md" className="whitespace-nowrap w-40 h-12 bg-alt-bg text-white hover:bg-alt-bg/90" asChild>
-                <a 
-                  href={`tel:${formatPhoneForTel(site.phone)}`}
-                  aria-label="Call to place order"
-                  className="flex items-center justify-center gap-1.5"
+              <a 
+                href={`tel:${formatPhoneForTel(site.phone)}`}
+                aria-label="Call to place order"
+              >
+                <Button 
+                  size="md" 
+                  className="whitespace-nowrap w-40 h-12 bg-alt-bg text-white hover:bg-alt-bg/90 flex items-center justify-center gap-1.5"
                 >
                   <Phone className="h-4 w-4 flex-shrink-0" />
                   <span>Call to Order</span>
-                </a>
-              </Button>
+                </Button>
+              </a>
             </motion.div>
           </div>
         </div>

@@ -132,7 +132,7 @@ export default function CareersPage() {
   return (
     <div>
       {/* Hero Section */}
-      <Section title="Join Our Team" kicker="Careers">
+      <Section title="Join Our Team">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-xl text-gray-600 mb-8">
             Love healthy living? Want to be part of Birmingham&lsquo;s freshest juice bar? 
@@ -142,7 +142,7 @@ export default function CareersPage() {
       </Section>
 
       {/* Application Form */}
-      <Section title="Apply Now" kicker="Ready to Join?" className="font-normal">
+      <Section title="Apply Now" className="font-normal">
         <div className="max-w-2xl mx-auto">
           {submitStatus === 'success' && (
             <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center">
