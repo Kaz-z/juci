@@ -223,3 +223,17 @@ body {
     max-width: 320px;
   }
 }
+
+/* Prevent menu item flash on mobile */
+@media (max-width: 767px) {
+  [data-menu-item] {
+    opacity: 1 !important;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  [data-menu-item] {
+    opacity: 1 !important;
+  }
+}

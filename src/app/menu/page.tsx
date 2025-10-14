@@ -366,6 +366,7 @@ export default function MenuPage() {
               {menuItems[category.id as keyof typeof menuItems]?.map((item, index) => (
                 <motion.div
                   key={item.name}
+                  data-menu-item
                   className="bg-white rounded-xl p-6 border border-gray-200 hover:border-cta/50 hover:shadow-lg transition-all duration-300"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
