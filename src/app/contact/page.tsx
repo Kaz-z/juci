@@ -12,6 +12,7 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    topic: 'general' as 'business' | 'general' | 'hiring',
     message: '',
     website: '' // honeypot field
   })
@@ -19,7 +20,9 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
     
@@ -62,6 +65,7 @@ export default function ContactPage() {
         setFormData({
           name: '',
           email: '',
+          topic: 'general',
           message: '',
           website: ''
         })
@@ -155,14 +159,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-normal text-fg mb-1">Hours</h3>
-                  <div className="text-gray-600 space-y-1 text-sm">
-                    {site.hours.map((hour, index) => (
-                      <div key={index}>
-                        <span className="font-medium">{hour.day}:</span>{' '}
-                        {`${hour.open} - ${hour.close}`}
-                      </div>
-                    ))}
-                  </div>
+                  <p className="text-gray-600 text-sm">{site.hoursDisplay}</p>
                 </div>
               </div>
             </div>
@@ -238,6 +235,27 @@ export default function ContactPage() {
                   />
                   {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
                 </div>
+              </div>
+
+              <div>
+                <label htmlFor="topic" className="block text-sm font-medium text-fg mb-2">
+                  Topic *
+                </label>
+                <select
+                  id="topic"
+                  name="topic"
+                  value={formData.topic}
+                  onChange={handleInputChange}
+                  required
+                  className={`w-full px-4 py-3 rounded-xl border ${
+                    errors.topic ? 'border-red-300' : 'border-gray-300'
+                  } focus:border-cta focus:ring-1 focus:ring-cta outline-none transition-colors bg-white`}
+                >
+                  <option value="general">General</option>
+                  <option value="business">Business</option>
+                  <option value="hiring">Hiring</option>
+                </select>
+                {errors.topic && <p className="mt-1 text-sm text-red-600">{errors.topic}</p>}
               </div>
 
               <div>

@@ -136,7 +136,7 @@ export default function CareersPage() {
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-xl text-gray-600 mb-8">
             Love healthy living? Want to be part of Birmingham&lsquo;s freshest juice bar? 
-            We&lsquo;re always looking for passionate people to join the Juci family.
+            We&lsquo;re always looking for passionate people to join the JUCI family.
           </p>
         </div>
       </Section>
@@ -309,7 +309,7 @@ export default function CareersPage() {
                 onChange={handleInputChange}
                 required
                 rows={6}
-                placeholder="Why do you want to work at Juci? What experience do you have? What makes you passionate about healthy living?"
+                placeholder="Why do you want to work at JUCI? What experience do you have? What makes you passionate about healthy living?"
                 className={`w-full px-4 py-3 rounded-xl border ${
                   errors.message ? 'border-red-300' : 'border-gray-300'
                 } focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors resize-vertical`}

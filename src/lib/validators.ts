@@ -4,6 +4,9 @@ import { z } from 'zod'
 export const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name must be less than 100 characters'),
   email: z.string().email('Please enter a valid email address'),
+  topic: z.enum(['business', 'general', 'hiring'], {
+    required_error: 'Please select a topic',
+  }),
   message: z.string().min(10, 'Message must be at least 10 characters').max(1000, 'Message must be less than 1000 characters'),
   // Honeypot field - should be empty
   website: z.string().max(0, 'Invalid submission').optional()

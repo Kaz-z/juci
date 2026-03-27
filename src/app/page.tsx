@@ -70,13 +70,19 @@ export default function HomePage() {
     <>
       {/* Hero Section with Image Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Image Background */}
+        {/* Video background (JUCI trailer) */}
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/images/test-juice-image.jpg"
-            alt="Fresh juices and acai bowls"
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/images/test-juice-image.jpg"
             className="absolute inset-0 w-full h-full object-cover"
-          />
+            aria-label="JUCI trailer"
+          >
+            <source src="/videos/juci-trailer-2.mp4" type="video/mp4" />
+          </video>
         </div>
 
         {/* Overlays */}
@@ -86,7 +92,7 @@ export default function HomePage() {
         {/* Content */}
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           <motion.h1
-            className="text-5xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8 leading-tight"
+            className="text-5xl sm:text-5xl lg:text-6xl xl:text-7xl text-white mb-8 leading-tight"
             style={{ fontFamily: 'Aftetir, sans-serif' }}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}

@@ -71,11 +71,11 @@ export default function Header() {
               <Link 
                 href="/" 
                 className="flex items-center hover:opacity-90 transition-opacity lg:justify-start justify-center w-full lg:w-auto"
-                aria-label="Juci home"
+                aria-label="JUCI home"
               >
                 <img 
                   src="/images/juci-logo-circle.png" 
-                  alt="Juci Logo" 
+                  alt="JUCI logo" 
                   className="h-10 w-10"
                 />
               </Link>

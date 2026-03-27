@@ -1,23 +1,21 @@
 export const site = {
-  name: "Juci",
+  name: "JUCI",
   tagline: "",
   location: "Birmingham (UK)",
   phone: "0121 266 4691",
-  email: "hello@juci.example",
+  email: "Info@juci.co",
   orderUrl: "https://order.juci.example",
   pdfMenuUrl: "/menu/juci-menu.pdf",
   address: "1184 Stratford Rd, Birmingham B28 8AB",
-  hours: [
-    { day: "Mon–Fri", open: "07:00", close: "10:00" },
-    { day: "Sat", open: "10:00", close: "10:00" },
-    { day: "Sun", open: "10:00", close: "10:00" },
-  ],
+  /** Single line for footer, contact page, etc. */
+  hoursDisplay: "10am to 10pm Monday to Sunday",
+  hours: [{ day: "Mo–Su", open: "10:00", close: "22:00" }],
   socials: {
     instagram: "https://instagram.com/juci",
     tiktok: "https://tiktok.com/@juci"
   },
   seo: {
-    title: "Juci - Fresh Juice & Smoothie Bar | Birmingham",
+    title: "JUCI - Fresh Juice & Smoothie Bar | Birmingham",
     description: "",
     keywords: "juice bar, smoothies, healthy drinks, Birmingham, fresh juice, organic",
     url: "https://juci.example"

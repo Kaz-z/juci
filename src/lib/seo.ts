@@ -71,28 +71,22 @@ export function generateLocalBusinessStructuredData() {
       addressLocality: 'Birmingham',
       addressCountry: 'GB',
     },
-    openingHours: site.hours
-      .map(h => {
-        const days = h.day.includes('–') 
-          ? h.day.split('–').map(d => d.trim())
-          : [h.day]
-        
-        return days.map(day => {
-          const dayMapping: Record<string, string> = {
-            'Mon': 'Monday',
-            'Tue': 'Tuesday', 
-            'Wed': 'Wednesday',
-            'Thu': 'Thursday',
-            'Fri': 'Friday',
-            'Sat': 'Saturday',
-            'Sun': 'Sunday'
-          }
-          
-          const fullDay = dayMapping[day] || day
-          return `${fullDay} ${h.open}-${h.close}`
-        })
-      })
-      .flat(),
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday',
+        ],
+        opens: '10:00',
+        closes: '22:00',
+      },
+    ],
     servesCuisine: 'Healthy Food',
     priceRange: '£5-£10',
     image: `${site.seo.url}/og-image.jpg`,
