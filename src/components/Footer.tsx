@@ -79,6 +79,9 @@ export default function Footer() {
             </div>
             
             <div className="space-y-2 text-sm">
+              <Link href="/stores" className="text-white hover:text-cta transition-colors block">
+                Stores
+              </Link>
               <Link href="/privacy" className="text-white hover:text-cta transition-colors block">
                 Privacy Policy
               </Link>

@@ -1,46 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { ZodError } from 'zod'
 import { contactFormSchema, sanitizeFormData } from '@/lib/validators'
 import { site } from '../../../../site.config'
 
-async function notifyInbox(data: {
+export const dynamic = 'force-dynamic'
+
+function logContactSubmission(data: {
   name: string
   email: string
   topic: string
   message: string
 }) {
   const to = site.email
-  const key = process.env.RESEND_API_KEY
-
-  if (!key) {
-    console.log(`Contact form submission (set RESEND_API_KEY to email ${to}):`, {
-      ...data,
-      timestamp: new Date().toISOString(),
-    })
-    return
-  }
-
-  const from =
-    process.env.RESEND_FROM_EMAIL ?? 'JUCI Website <onboarding@resend.dev>'
-
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${key}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      reply_to: data.email,
-      subject: `[${data.topic}] Contact from ${data.name}`,
-      text: `Topic: ${data.topic}\nFrom: ${data.name} <${data.email}>\n\n${data.message}`,
-    }),
+  console.log(`Contact form (send to ${to}):`, {
+    ...data,
+    timestamp: new Date().toISOString(),
   })
-
-  if (!res.ok) {
-    const body = await res.text()
-    throw new Error(`Resend failed: ${body}`)
-  }
 }
 
 export async function POST(request: NextRequest) {
@@ -57,14 +32,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    await notifyInbox({
+    logContactSubmission({
       name: validatedData.name,
       email: validatedData.email,
       topic: validatedData.topic,
       message: validatedData.message,
     })
 
-    await new Promise(resolve => setTimeout(resolve, 500))
+    await new Promise((resolve) => setTimeout(resolve, 500))
 
     return NextResponse.json(
       {
@@ -77,11 +52,11 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Contact form error:', error)
 
-    if (error instanceof Error && 'issues' in error) {
+    if (error instanceof ZodError) {
       return NextResponse.json(
         {
           error: 'Validation failed',
-          details: (error as any).issues.map((issue: any) => ({
+          details: error.issues.map((issue) => ({
             field: issue.path[0],
             message: issue.message,
           })),
@@ -97,7 +72,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function OPTIONS(request: NextRequest) {
+export async function OPTIONS() {
   return new NextResponse(null, {
     status: 200,
     headers: {

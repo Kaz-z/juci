@@ -5,7 +5,12 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import DownloadMenuButton from '@/components/DownloadMenuButton'
 
+const metadataBase = new URL(
+  (process.env.NEXT_PUBLIC_SITE_URL || site.seo.url).replace(/\/$/, '')
+)
+
 export const metadata: Metadata = {
+  metadataBase,
   title: site.seo.title,
   description: site.seo.description,
   keywords: site.seo.keywords,

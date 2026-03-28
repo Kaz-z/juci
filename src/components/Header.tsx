@@ -4,12 +4,11 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { site } from '../../site.config'
-import Button from './Button'
 
 const navigation = [
   { name: 'HOME', href: '/' },
   { name: 'MENU', href: '/menu' },
+  { name: 'STORES', href: '/stores' },
   { name: 'CAREERS', href: '/careers' },
   { name: 'CONTACT', href: '/contact' },
 ]
@@ -97,22 +96,8 @@ export default function Header() {
               ))}
             </div>
 
-            {/* Right Side - Sign Up/Login (Desktop Only) + Mobile Spacer */}
-            <div className="flex items-center space-x-4 lg:flex-1 lg:justify-end">
-              {/* Sign Up/Login Button - Desktop Only */}
-              <div className="hidden lg:flex items-center">
-                <Button 
-                  className="bg-black text-white hover:bg-gray-800 rounded-full px-6 py-2 text-sm font-normal uppercase tracking-wide"
-                  style={{ fontFamily: 'Aftetir, sans-serif' }}
-                  asChild
-                >
-                  <Link href="/follow">
-                    FOLLOW US
-                  </Link>
-                </Button>
-              </div>
-              
-              {/* Mobile Spacer to balance the hamburger menu */}
+            {/* Mobile Spacer to balance the hamburger menu */}
+            <div className="flex items-center lg:flex-1 lg:justify-end">
               <div className="lg:hidden w-10"></div>
             </div>
           </div>

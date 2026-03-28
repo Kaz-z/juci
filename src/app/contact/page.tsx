@@ -5,8 +5,15 @@ import { Phone, Mail, CheckCircle, AlertCircle, MapPin, Clock } from 'lucide-rea
 import { site } from '../../../site.config'
 import Section from '@/components/Section'
 import Button from '@/components/Button'
-import { contactFormSchema, sanitizeFormData, type ContactFormData } from '@/lib/validators'
+import { contactFormSchema, sanitizeFormData } from '@/lib/validators'
 import { formatPhoneForDisplay, formatPhoneForTel } from '@/lib/utils'
+import { buildMailtoHref } from '@/lib/mailto'
+
+const topicLabels: Record<'business' | 'general' | 'hiring', string> = {
+  business: 'Business',
+  general: 'General',
+  hiring: 'Hiring',
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -50,28 +57,29 @@ export default function ContactPage() {
         return
       }
 
-      // Submit to API
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(validatedData)
-      })
+      const subject = `[${topicLabels[validatedData.topic]}] Message from ${validatedData.name}`
+      const body = [
+        'Contact form',
+        '',
+        `Name:  ${validatedData.name}`,
+        `Email: ${validatedData.email}`,
+        `Topic: ${topicLabels[validatedData.topic]}`,
+        '',
+        'Message:',
+        '',
+        validatedData.message,
+      ].join('\n')
 
-      if (response.ok) {
-        setSubmitStatus('success')
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          topic: 'general',
-          message: '',
-          website: ''
-        })
-      } else {
-        setSubmitStatus('error')
-      }
+      window.location.href = buildMailtoHref(site.email, subject, body)
+
+      setSubmitStatus('success')
+      setFormData({
+        name: '',
+        email: '',
+        topic: 'general',
+        message: '',
+        website: '',
+      })
     } catch (error) {
       if (error instanceof Error && 'issues' in error) {
         // Zod validation errors
@@ -173,7 +181,9 @@ export default function ContactPage() {
               <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center">
                 <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                 <p className="text-green-800">
-                  Thank you for your message! We&lsquo;ll get back to you within 24 hours.
+                  Your email app should open with your message ready to send. If it
+                  didn&lsquo;t, email us at {site.email} or call{' '}
+                  {formatPhoneForDisplay(site.phone)}.
                 </p>
               </div>
             )}

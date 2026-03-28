@@ -23,41 +23,11 @@ export const jobApplicationSchema = z.object({
     required_error: 'Please select a role'
   }),
   message: z.string().min(20, 'Please tell us more about yourself (minimum 20 characters)').max(1000, 'Message must be less than 1000 characters'),
-  cv: z.any().optional(),
   // Honeypot field - should be empty
   website: z.string().max(0, 'Invalid submission').optional()
 })
 
 export type JobApplicationData = z.infer<typeof jobApplicationSchema>
-
-// File validation for CV uploads
-export const validateFile = (file: File | null): string[] => {
-  const errors: string[] = []
-  
-  if (!file) {
-    errors.push('Please upload your CV')
-    return errors
-  }
-  
-  // Check file size (5MB max)
-  const maxSize = 5 * 1024 * 1024 // 5MB
-  if (file.size > maxSize) {
-    errors.push('File size must be less than 5MB')
-  }
-  
-  // Check file type
-  const allowedTypes = [
-    'application/pdf',
-    'application/msword',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-  ]
-  
-  if (!allowedTypes.includes(file.type)) {
-    errors.push('Please upload a PDF or Word document')
-  }
-  
-  return errors
-}
 
 // Helper function to sanitize form data
 export const sanitizeFormData = (data: Record<string, any>): Record<string, any> => {

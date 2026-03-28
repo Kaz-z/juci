@@ -1,11 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { Upload, CheckCircle, AlertCircle } from 'lucide-react'
+import { CheckCircle, AlertCircle } from 'lucide-react'
 import { site } from '../../../site.config'
 import Section from '@/components/Section'
 import Button from '@/components/Button'
-import { jobApplicationSchema, validateFile, sanitizeFormData, type JobApplicationData } from '@/lib/validators'
+import { jobApplicationSchema, sanitizeFormData } from '@/lib/validators'
+import { buildMailtoHref } from '@/lib/mailto'
 
 const roles = [
   { value: 'barista', label: 'Juice Barista' },
@@ -23,9 +24,7 @@ export default function CareersPage() {
     message: '',
     website: '' // honeypot field
   })
-  const [cvFile, setCvFile] = useState<File | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const [fileErrors, setFileErrors] = useState<string[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -39,19 +38,7 @@ export default function CareersPage() {
     }
   }
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null
-    setCvFile(file)
-    
-    if (file) {
-      const fileValidationErrors = validateFile(file)
-      setFileErrors(fileValidationErrors)
-    } else {
-      setFileErrors([])
-    }
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setErrors({})
@@ -61,14 +48,6 @@ export default function CareersPage() {
       // Validate form data
       const sanitizedData = sanitizeFormData(formData)
       const validatedData = jobApplicationSchema.parse(sanitizedData)
-      
-      // Validate file
-      const fileValidationErrors = validateFile(cvFile)
-      if (fileValidationErrors.length > 0) {
-        setFileErrors(fileValidationErrors)
-        setIsSubmitting(false)
-        return
-      }
 
       // Check honeypot
       if (formData.website) {
@@ -77,40 +56,41 @@ export default function CareersPage() {
         return
       }
 
-      // Prepare form data for submission
-      const submitData = new FormData()
-      Object.entries(validatedData).forEach(([key, value]) => {
-        if (key !== 'website') {
-          submitData.append(key, value.toString())
-        }
-      })
+      const roleLabel =
+        roles.find((r) => r.value === validatedData.role)?.label ??
+        validatedData.role
+      const subject = `Job application: ${roleLabel} — ${validatedData.name}`
+      const body = [
+        'IMPORTANT — Before you send this email:',
+        'Please ATTACH your CV or resume (PDF or Word). We cannot review your application without it.',
+        '',
+        '—',
+        '',
+        'Job application',
+        '',
+        `Name:     ${validatedData.name}`,
+        `Email:    ${validatedData.email}`,
+        `Phone:    ${validatedData.phone}`,
+        `Position: ${roleLabel}`,
+        '',
+        'Message:',
+        '',
+        validatedData.message,
+        '',
       
-      if (cvFile) {
-        submitData.append('cv', cvFile)
-      }
+      ].join('\n')
 
-      // Submit to API
-      const response = await fetch('/api/apply', {
-        method: 'POST',
-        body: submitData
+      window.location.href = buildMailtoHref(site.email, subject, body)
+
+      setSubmitStatus('success')
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        role: '',
+        message: '',
+        website: '',
       })
-
-      if (response.ok) {
-        setSubmitStatus('success')
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          role: '',
-          message: '',
-          website: ''
-        })
-        setCvFile(null)
-        setFileErrors([])
-      } else {
-        setSubmitStatus('error')
-      }
     } catch (error) {
       if (error instanceof Error && 'issues' in error) {
         // Zod validation errors
@@ -148,7 +128,9 @@ export default function CareersPage() {
             <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center">
               <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
               <p className="text-green-800">
-                Thank you for your application! We&lsquo;ll review it and get back to you soon.
+                Your email app should open with your application ready. Please attach your
+                CV or resume before you send. If nothing opened, email {site.email} with
+                your details and CV attached.
               </p>
             </div>
           )}
@@ -254,48 +236,6 @@ export default function CareersPage() {
                 </select>
                 {errors.role && <p className="mt-1 text-sm text-red-600">{errors.role}</p>}
               </div>
-            </div>
-
-            <div>
-              <label htmlFor="cv" className="block text-sm font-medium text-fg mb-2">
-                CV/Resume *
-              </label>
-              <div className="relative">
-                <input
-                  type="file"
-                  id="cv"
-                  name="cv"
-                  onChange={handleFileChange}
-                  accept=".pdf,.doc,.docx"
-                  required
-                  className="sr-only"
-                />
-                <label
-                  htmlFor="cv"
-                  className={`flex items-center justify-center w-full px-4 py-8 rounded-xl border-2 border-dashed cursor-pointer transition-colors ${
-                    fileErrors.length > 0 
-                      ? 'border-red-300 bg-red-50' 
-                      : cvFile 
-                        ? 'border-green-300 bg-green-50' 
-                        : 'border-gray-300 hover:border-cta hover:bg-cta/5'
-                  }`}
-                >
-                  <div className="text-center">
-                    <Upload className={`h-8 w-8 mx-auto mb-2 ${
-                      fileErrors.length > 0 ? 'text-red-500' : cvFile ? 'text-green-500' : 'text-gray-400'
-                    }`} />
-                    <p className="text-sm font-medium text-fg">
-                      {cvFile ? cvFile.name : 'Upload your CV'}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      PDF, DOC, or DOCX (max 5MB)
-                    </p>
-                  </div>
-                </label>
-              </div>
-              {fileErrors.map((error, index) => (
-                <p key={index} className="mt-1 text-sm text-red-600">{error}</p>
-              ))}
             </div>
 
             <div>

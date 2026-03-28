@@ -7,6 +7,15 @@ export const site = {
   orderUrl: "https://order.juci.example",
   pdfMenuUrl: "/menu/juci-menu.pdf",
   address: "1184 Stratford Rd, Birmingham B28 8AB",
+  /** Map marker (Stratford Rd, B28) — OpenStreetMap reference point */
+  store: {
+    title: "JUCI — Stratford Road",
+    /** WGS84 for Leaflet */
+    lat: 52.42076,
+    lng: -1.82891,
+    googleMapsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=1184+Stratford+Rd,+Birmingham+B28+8AB,+UK",
+  },
   /** Single line for footer, contact page, etc. */
   hoursDisplay: "10am to 10pm Monday to Sunday",
   hours: [{ day: "Mo–Su", open: "10:00", close: "22:00" }],
