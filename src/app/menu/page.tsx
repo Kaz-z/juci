@@ -44,7 +44,7 @@ const categories: Category[] = [
     icon: Zap,
     color: 'bg-cta text-white',
     subtitle:
-      'Reg £5.95 · Lrg £6.95',
+      'Reg £4.95 · Lrg £5.95',
   },
   {
     id: 'smoothies',
