@@ -73,10 +73,10 @@ export default function Header() {
                 className="flex items-center hover:opacity-90 transition-opacity lg:justify-start justify-center w-full lg:w-auto"
                 aria-label="JUCI home"
               >
-                <img 
-                  src="/images/juci-logo-circle.png" 
-                  alt="JUCI logo" 
-                  className="h-10 w-10"
+                <img
+                  src="/images/juci-logo.svg"
+                  alt="JUCI logo"
+                  className="h-12 w-12 shrink-0"
                 />
               </Link>
             </div>

@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand & Contact */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-4">{'Location'}</h3>
+            <h3 className="text-xl text-white mb-4">{'Location'}</h3>
             <p className="text-white mb-4">{site.tagline}</p>
             <div className="space-y-2 text-sm text-white">
               <p>{site.address}</p>
@@ -50,13 +50,13 @@ export default function Footer() {
 
           {/* Hours */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Opening Hours</h4>
+            <h4 className="text-xl text-white mb-4">Opening Hours</h4>
             <p className="text-sm text-white">{site.hoursDisplay}</p>
           </div>
 
           {/* Social & Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Follow Us</h4>
+            <h4 className="text-xl text-white mb-4">Follow Us</h4>
             <div className="flex space-x-4 mb-6">
               <a
                 href={site.socials.instagram}

@@ -34,7 +34,7 @@ export default function Section({
               </p>
             )}
             {title && (
-              <h2 className={cn("text-3xl sm:text-4xl lg:text-5xl text-fg", className?.includes('font-') ? '' : 'font-bold')}>
+              <h2 className={cn("text-3xl sm:text-4xl lg:text-5xl text-fg", className?.includes('font-') ? '' : '')}>
                 {title}
               </h2>
             )}
