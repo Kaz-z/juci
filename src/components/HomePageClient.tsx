@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Button from '@/components/Button'
 import Section from '@/components/Section'
+import HeroBackgroundVideo from '@/components/HeroBackgroundVideo'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import 'swiper/css'
@@ -38,21 +39,9 @@ export default function HomePageClient() {
     <>
       {/* Hero Section with Image Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Video background (JUCI trailer) — black base avoids flash; no poster (poster shows until first frame) */}
+        {/* Video background — see HeroBackgroundVideo for mobile autoplay / WebKit UI */}
         <div className="absolute inset-0 w-full h-full bg-black">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            // Chromium prioritises fetch; not in React 18 video types yet
-            {...({ fetchPriority: 'high' } as Record<string, string>)}
-            className="absolute inset-0 w-full h-full object-cover"
-            aria-label="JUCI trailer"
-          >
-            <source src="/videos/juci-trailer-2.mp4" type="video/mp4" />
-          </video>
+          <HeroBackgroundVideo />
         </div>
 
         {/* Overlays */}
